@@ -1,6 +1,28 @@
 <resources>
-    <string name="app_name">Interview Java</string>
+    <string name="app_name">Influencer</string>
 
-    <string name="baseURL"></string>
+    <string name="baseURL">http://34.101.42.179:8080</string>
+
+    <string-array name="category">
+        <item>-- Pilih Category --</item>
+        <item>Food &amp; Cooking</item>
+        <item>Fashion</item>
+        <item>Entertaiment</item>
+        <item>Travel</item>
+        <item>Beauty</item>
+        <item>Healthcare</item>
+        <item>Technology</item>
+        <item>Automotive</item>
+        <item>Education</item>
+        <item>Sports</item>
+        <item>Finance</item>
+        <item>Career</item>
+    </string-array>
+
+    <string-array name="role">
+        <item>-- Pilih Role --</item>
+        <item>TikTok</item>
+        <item>Instagram</item>
+    </string-array>
 
 </resources>

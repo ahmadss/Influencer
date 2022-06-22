@@ -12,9 +12,19 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.TestInterviewJava">
-        <activity android:name=".MainActivity"></activity>
+        android:theme="@style/Theme.TestInterviewJava"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".RegisterInfluencerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterBrandActivity"
+            android:exported="false" />
+        <activity
+
+            android:name=".DetailActivity"
+            android:exported="false" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

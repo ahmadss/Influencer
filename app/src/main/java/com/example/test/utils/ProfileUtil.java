@@ -3,51 +3,44 @@ package com.example.test.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.test.model.User;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-
 public class ProfileUtil {
-    public void save(Context context, User user){
-        SharedPreferences settings = context.getSharedPreferences("profileShipper", context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-        Gson gson = new Gson();
 
-        String jsonUser = gson.toJson(user);
-        editor.putString("jsonUser", jsonUser);
+    public void save(Context context, String user, String category, String email){
+        SharedPreferences settings = context.getSharedPreferences("profileUser", context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("user", user);
+        editor.putString("category", category);
+        editor.putString("email", email);
         editor.commit();
     }
 
 
-    public void setSessionId(Context context, String sessionId){
-        SharedPreferences settings = context.getSharedPreferences("profileShipper", context.MODE_PRIVATE);
+    public String getUser(Context context){
+        SharedPreferences settings = context.getSharedPreferences("profileUser", context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
 
-        editor.putString("requestSessionId", sessionId);
-        editor.commit();
+        String user = settings.getString("user", null);
+        return user;
     }
 
-    public String getSessionId(Context context){
-        SharedPreferences settings = context.getSharedPreferences("profileShipper", context.MODE_PRIVATE);
+    public String getEmail(Context context){
+        SharedPreferences settings = context.getSharedPreferences("profileUser", context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
-        String sessionId = settings.getString("requestSessionId", null);
-        return sessionId;
+
+        String user = settings.getString("email", null);
+        return user;
     }
 
-    public User getUser(Context context){
-        SharedPreferences settings = context.getSharedPreferences("profileShipper", context.MODE_PRIVATE);
+    public String getcategory(Context context){
+        SharedPreferences settings = context.getSharedPreferences("profileUser", context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
 
-        Gson gson = new Gson();
-        String jsonUser = settings.getString("jsonUser", null);
-        Type type = new TypeToken<User>() {}.getType();
-        return gson.fromJson(jsonUser, type);
+        String category = settings.getString("category", null);
+        return category;
     }
 
     public void resetProfile(Context context){
-        SharedPreferences settings = context.getSharedPreferences("profileShipper", context.MODE_PRIVATE);
+        SharedPreferences settings = context.getSharedPreferences("profileUser", context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.clear();
         editor.commit();
@@ -55,14 +48,11 @@ public class ProfileUtil {
 
     public boolean isLogin(Context context){
         boolean isLogin = false;
-        SharedPreferences settings = context.getSharedPreferences("profileShipper", context.MODE_PRIVATE);
-        Gson gson = new Gson();
-        String jsonUser = settings.getString("jsonUser", null);
-        Type type = new TypeToken<User>() {}.getType();
-        User user = gson.fromJson(jsonUser, type);
+        SharedPreferences settings = context.getSharedPreferences("profileUser", context.MODE_PRIVATE);
+        String user = settings.getString("user", null);
 
         if (user != null){
-            if (user.getUsername().equals("")){
+            if (user.equals("")){
                 return false;
             }else{
                 return true;
